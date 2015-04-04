@@ -3,10 +3,11 @@ class Game{
 		bool start;
 		bool winP1;
 		bool win P2;
+		bool change;
 		
 
 
-PieceGrouping(){
+void Game::PieceGrouping(){
 	
 }
 
