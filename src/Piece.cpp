@@ -58,7 +58,43 @@ class Pawn : public Piece{
 		this->firstMoved = true;
 	}
 
+	void move(){
 
+		int val1 = -1;
+		int val2 = -2;
+		
+		if(white){
+			val1 = abs(val1);
+			val2 = abs(val2);
+		}
+		if(firstMoved && move[1] - position[1] == val2 && position[0] == move[0]){
+			firstMoved = false;
+			//check collision() to check if it can move there
+			//if(collision()){
+			position[0] = moved[0];
+			position[1] = moved[1];
+			//}
+		}
+		else if(move[1] - position[1] == val1 && position[0] == move[0]){
+			firstMoved = false;
+			//we can move dat
+			//if(collision()){
+			position[0] = moved[0];
+			position[1] = moved[1];
+			//}
+		}
+		else if(move[1] - position[1] == val1 && abs(move[1] - position[1]) == 1){
+			if(collision()){
+				firstMoved = false;
+				kill(move);
+				position[0] = moved[0];
+				position[1] = moved[1];
+			}
+		}
+		else cout<<"Brahhhhhhhhhhh you can't move dat";
+
+		collisionDetect();
+	}
 };
 
 
