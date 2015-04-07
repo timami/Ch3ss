@@ -39,11 +39,18 @@ class Piece {
 		return position;
 	}
 
+	void died(){
+		dead = true;
+	}
+
 };
 
 class Pawn : public Piece{
 	private:
 		bool firstMoved;
+
+	public:
+		void transformer();
 
 	Pawn(bool firstMove) : Piece (int color, bool white, int positionX, int positionY){
 		this->type = 0 //Pawn
@@ -91,10 +98,59 @@ class Pawn : public Piece{
 				position[1] = moved[1];
 			}
 		}
+
+		int end = 0;			//set end location for black
+		if(white) end = 7;		//set end location for white
+		if(position[1] == end) transformMethod();
+
+		//put en passat VW in here
 		else cout<<"Brahhhhhhhhhhh you can't move dat";
 
 		collisionDetect();
+	} 
+
+	int getType(){
+		return type;
 	}
+
+	void transformMethod(){
+		bool chosen = false;
+		while (!chosen){
+			string option;
+			cout << "Who do you want to be: \n Queen, Weenie, Rook, Bishop, Knight, King Weenie!";
+			cin >> option;
+
+			string lowerOption = "";
+			for(unsigned i = 0; i < option.size(); i++){
+				lowerOption += tolower(option.at(i));
+			}
+			
+			if(lowerOption.compare("queen") == 0){
+				chosen = true;
+				//create a new queen with location = position
+			}
+			else if(lowerOption.compare("rook") == 0){
+				chosen = true;
+				//create a new rook with location = position
+			}
+			else if(lowerOption.compare("bishop") == 0){
+				chosen = true;
+				//create a new bishop with location = position
+			}
+			else if(lowerOption.compare("knight") == 0){
+				chosen = true;
+				//create a new knight with location = position
+			}
+			else if(lowerOption.compare("king weenie") == 0){
+				cout << "ALL HAIL KING WEENIE!!!!!!! but seriously..." << endl;
+			}
+			else if(lowerOption.compare("weenie") == 0){
+				cout << "Oh. Choose another... weenie" << endl;
+			}
+			else cout << "Sorry. That is not an option. Please choose again" << endl;
+		}
+	}
+
 };
 
 
