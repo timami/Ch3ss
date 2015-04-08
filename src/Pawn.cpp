@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <iostream>
 #include "Piece.h"
 #include "Piece.cpp"
 using namespace std;
@@ -37,10 +38,10 @@ void Pawn::move(){
 		else if(move[1] - position[1] == val1 && position[0] == move[0]){
 			firstMoved = false;
 			//we can move dat
-			//if(collision()){
+			if(collision()){
 			position[0] = moved[0];
 			position[1] = moved[1];
-			//}
+			}
 		}
 		else if(move[1] - position[1] == val1 && abs(move[1] - position[1]) == 1){
 			if(collision()){
